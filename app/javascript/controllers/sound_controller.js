@@ -53,7 +53,7 @@ export default class extends Controller {
         this.played++;
         let average = this.time / this.played;
         let unit = average > 60 ? "min" : "s";
-        if (average > 60) average / 60;
+        if (average > 60) average /= 60;
         average = Math.round(average);
         console.log(
             `Average interval for ${this.nameTarget.innerText}: ${average}${unit}`,
