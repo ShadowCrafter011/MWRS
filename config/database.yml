@@ -19,6 +19,9 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+  user: <%= Rails.application.credentials[:pg_user] %>
+  password: <%= Rails.application.credentials[:pg_password] %>
+
 development:
   <<: *default
   database: mwrs_development

@@ -1,0 +1,25 @@
+@layer components {
+    h1 {
+        @apply py-2 text-center text-4xl font-medium;
+    }
+
+    h2 {
+        @apply py-2 text-center text-3xl font-medium;
+    }
+
+    h3 {
+        @apply py-1 text-center text-2xl;
+    }
+
+    h4 {
+        @apply py-1 text-center text-xl;
+    }
+
+    h5 {
+        @apply text-center text-lg;
+    }
+
+    h6 {
+        @apply text-center;
+    }
+}

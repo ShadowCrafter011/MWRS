@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "shopify.ruby-lsp",
+        "rubocop.vscode-rubocop",
+        "dbaeumer.vscode-eslint"
+    ]
+}
