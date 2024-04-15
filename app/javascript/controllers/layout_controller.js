@@ -6,7 +6,7 @@ export default class extends Controller {
     static targets = ["simple", "advanced", "button"];
 
     connect() {
-        this.simple = true;
+        this.simple = false;
     }
 
     switch() {
