@@ -1,4 +1,8 @@
 class HomeController < ApplicationController
+    def index; end
+
+    def standalone; end
+
     def spotify_search; end
 
     def spotify_results

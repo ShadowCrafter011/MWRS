@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     # Defines the root path route ("/")
     root "home#index"
 
+    get "standalone" => "home#standalone", as: "standalone"
     get "spotify" => "home#spotify_search", as: "spotify_search"
     get "spotify/results" => "home#spotify_results", as: "spotify_results"
     get "spotify/:spotify_id" => "home#spotify", as: "spotify_play"
