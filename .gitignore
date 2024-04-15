@@ -10,6 +10,9 @@
 # Ignore node modules
 node_modules/
 
+# Ignore redis dump file
+dump.rdb
+
 # Ignore all environment files (except templates).
 /.env*
 !/.env*.erb
