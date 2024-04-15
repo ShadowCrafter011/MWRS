@@ -1,0 +1,9 @@
+<div data-controller="layout" class="mt-5 min[300px]:mx-2">
+    <%= render partial: "toggle_button" %>
+    <div data-layout-target=simple>
+        <%= render partial: "simple_sounds" %>
+    </div>
+    <div data-layout-target=advanced class="hidden">
+        <%= render partial: "advanced_sounds" %>
+    </div>
+</div>

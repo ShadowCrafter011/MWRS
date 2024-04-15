@@ -1,0 +1,48 @@
+<div class="mt-5 space-y-2 px-2 sm:px-0">
+    <% Dir.glob("app/assets/audio/*").each do |path| %>
+        <% next unless (match = path.match(/app\/assets\/audio\/([a-zA-Z0-9_]*)\.[a-zA-Z0-9]+/)) %>
+        <% file_name = match.captures.first %>
+        <% name = file_name.split("_").join(" ").capitalize %>
+        
+        <div data-controller="sound" data-advanced=1 class="flex xl:flex-row items-center justify-between flex-col gap-2 px-2 py-1 border-2 border-teal-700 rounded">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <%= audio_tag file_name, data: { sound_target: "audio" } %>
+                    <svg
+                        data-sound-target="play"
+                        data-action="click->sound#play"
+                        class="cursor-pointer"
+                        height=30
+                        viewbox="0 0 20 20"
+                    >
+                        <path d="M 10 0 C 15 0 20 5 20 10 C 20 15 16 20 10 20 C 5 20 0 15 0 10 C 0 5 5 0 10 0 Z M 7 3 L 7 17 L 16 10 Z" fill=white />
+                    </svg>
+                    <svg
+                        data-sound-target="pause"
+                        data-action="click->sound#pause"
+                        class="cursor-pointer hidden"
+                        height=30
+                        viewbox="0 0 20 20"
+                    >
+                        <path d="M 10 0 C 15 0 20 5 20 10 C 20 15 16 20 10 20 C 5 20 0 15 0 10 C 0 5 5 0 10 0 Z M 6 5 C 6 3 9 3 9 5 L 9 15 C 9 17 6 17 6 15 Z M 11 5 C 11 3 14 3 14 5 L 14 15 C 14 17 11 17 11 15 Z" fill=white fill-rule="evenodd" />
+                    </svg>
+                    <h4 data-sound-target="name" title="<%= name %>"><%= name %></h4>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span data-sound-target="probabilityDisplay"></span>
+                    <span data-sound-target="volumeDisplay"></span>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <div class="flex flex-col sm:flex-row items-center gap-2">
+                    <span>Probability</span>
+                    <input data-sound-target="probability" type="range" min=0 max=100>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-2">
+                    <span>Volume</span>
+                    <input data-sound-target="volume" type="range" min=0 max=100 value=100>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

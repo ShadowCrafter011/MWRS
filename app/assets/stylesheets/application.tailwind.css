@@ -7,6 +7,6 @@
 @layer components {
     html,
     body {
-        @apply text-white;
+        @apply bg-zinc-800 text-white;
     }
 }
