@@ -4,6 +4,7 @@ import $ from "jquery";
 // Connects to data-controller="spotify"
 export default class extends Controller {
     static targets = [
+        "activate",
         "icon",
         "name",
         "author",
@@ -32,6 +33,22 @@ export default class extends Controller {
             "player_state_changed",
             this.state_change.bind(this),
         );
+
+        this.player.addListener(
+            "autoplay_failed",
+            this.autoplay_failed.bind(this),
+        );
+    }
+
+    autoplay_failed() {
+        $(this.activateTarget).removeClass("hidden");
+        $(this.nameTarget).addClass("hidden");
+    }
+
+    activate() {
+        $(this.activateTarget).addClass("hidden");
+        $(this.nameTarget).removeClass("hidden");
+        this.player.activateElement();
     }
 
     state_change(player) {
@@ -69,8 +86,8 @@ export default class extends Controller {
             }
             $(this.authorTarget).text(artists.join(","));
 
-            let totalSeconds = Math.round(player.duration / 1000);
-            let progressSeconds = Math.round(player.position / 1000);
+            let totalSeconds = Math.floor(player.duration / 1000);
+            let progressSeconds = Math.floor(player.position / 1000);
             $(this.totalTarget).text(this.secondsToString(totalSeconds));
             $(this.progressTarget).text(this.secondsToString(progressSeconds));
 
@@ -98,7 +115,7 @@ export default class extends Controller {
         let delta_t = new Date().getTime() - this.play_start;
         let total = this.progress + delta_t;
         $(this.progressTarget).text(
-            this.secondsToString(Math.round(total / 1000)),
+            this.secondsToString(Math.floor(total / 1000)),
         );
         $(this.progressBarTarget).css(
             "width",

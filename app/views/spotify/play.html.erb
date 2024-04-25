@@ -30,6 +30,13 @@
         <div class="flex sm:justify-between flex-col sm:flex-row">
             <div>
                 <h3 data-spotify-target=name class="text-center sm:text-start p-0">Nothing playing</h3>
+                <h3
+                    data-spotify-target=activate
+                    data-action="click->spotify#activate"
+                    class="hidden border-2 border-teal-700 rounded p-2 cursor-pointer select-none hover:bg-teal-700 transition-colors duration-150"
+                >
+                    Autoplay blocked<br>Please click here
+                </h3>
                 <h3 data-spotify-target=author class="text-gray-500 text-center sm:text-start p-0"></h3>
             </div>
             <span class="text-gray-500 text-center sm:text-start">Use the Spotify app to control</span>
