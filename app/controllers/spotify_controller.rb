@@ -21,8 +21,7 @@ class SpotifyController < ApplicationController
     end
 
     def refresh
-        auth_data = refresh_auth
-        render json: { auth: auth_data.first, auth_expire: auth_data.last }
+        render json: { auth: refresh_auth }
     end
 
     def callback
@@ -56,15 +55,13 @@ class SpotifyController < ApplicationController
                 authorization: "Basic #{app_auth}"
             }
         )
-        puts response
         return nil unless response.code == 200
 
         json = JSON.parse response.body
-        puts "HELLO #{json["refresh_token"]}"
         return nil unless json["access_token"]
 
         set_cookies json
-        [json["access_token"], json["expires_in"] - 100]
+        json["access_token"]
     end
 
     def app_auth
@@ -76,6 +73,6 @@ class SpotifyController < ApplicationController
     def set_cookies(json)
         cookies.encrypted[:auth] = json["access_token"]
         cookies.encrypted[:refresh] = json["refresh_token"] if json["refresh_token"].present?
-        cookies.encrypted[:auth_expire] = (Time.now + (json["expires_in"] - 120).seconds).to_i
+        cookies.encrypted[:auth_expire] = (Time.now + (json["expires_in"] - 20).seconds).to_i
     end
 end
