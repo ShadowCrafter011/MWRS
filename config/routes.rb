@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     root "home#index"
 
     get "standalone" => "home#standalone", as: "standalone"
-    get "spotify" => "home#spotify_search", as: "spotify_search"
-    get "spotify/results" => "home#spotify_results", as: "spotify_results"
-    get "spotify/:spotify_id" => "home#spotify", as: "spotify_play"
+    get "spotify" => "spotify#play", as: "spotify_play"
+    get "spotify/login" => "spotify#login", as: "spotify_login"
+    post "spotify/refresh" => "spotify#refresh"
+    get "spotify/callback" => "spotify#callback", as: "spotify_callback"
 end

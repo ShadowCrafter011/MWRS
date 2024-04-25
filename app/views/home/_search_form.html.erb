@@ -1,9 +1,0 @@
-<%= form_with url: spotify_results_path, method: :get do |form| %>
-    <div class="flex items-center justify-center">
-        <div class="w-fit rounded border border-teal-700 divide-x divide-teal-700">
-            <%= form.text_field :page, value: "1", hidden: true %>
-            <%= form.text_field :query, class: "sm:w-96 bg-zinc-800 focus:ring-transparent border-none rounded", autocomplete: false, placeholder: "Search the Spotify library" %>
-            <%= form.submit value: "Search", class: "p-2 cursor-pointer hover:bg-teal-700 transition-color duration-150" %>
-        </div>
-    </div>
-<% end %>

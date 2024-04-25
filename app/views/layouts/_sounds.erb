@@ -1,10 +1,12 @@
-<div class="mt-5 space-y-2 px-2 sm:px-0">
+<button data-controller="pause" data-action="pause#toggle" class="w-full border-2 border-teal-700 transition-colors duration-150 rounded hover:bg-teal-700 py-2 mt-2 truncate min-w-32">Disable all sounds</button>
+
+<div class="mt-2 space-y-2 px-2 sm:px-0">
     <% Dir.glob("app/assets/audio/*").each do |path| %>
         <% next unless (match = path.match(/app\/assets\/audio\/([a-zA-Z0-9_]*)\.[a-zA-Z0-9]+/)) %>
         <% file_name = match.captures.first %>
         <% name = file_name.split("_").join(" ").capitalize %>
         
-        <div data-controller="sound" data-advanced=1 class="flex xl:flex-row items-center justify-between flex-col gap-2 px-2 py-1 border-2 border-teal-700 rounded">
+        <div data-controller="sound" class="flex xl:flex-row items-center justify-between flex-col gap-2 px-2 py-1 border-2 border-teal-700 rounded">
             <div class="flex flex-col sm:flex-row items-center gap-4">
                 <div class="flex items-center gap-2">
                     <%= audio_tag file_name, data: { sound_target: "audio" } %>

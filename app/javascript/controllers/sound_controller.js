@@ -63,8 +63,7 @@ export default class extends Controller {
         let probability = $(this.probabilityTarget).val();
         if (!this.enabled) return;
         if (!this.audioTarget.paused) return;
-        if ($(this.element).data("muted") || $(this.element).data("disabled"))
-            return;
+        if ($(this.element).data("muted")) return;
         if (Math.random() > this.probability_calc(probability) / 100)
             return this.time++;
         this.audioTarget.play();
