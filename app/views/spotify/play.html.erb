@@ -1,4 +1,49 @@
-<div data-controller="webplayback" data-auth-token="<%= @auth_token %>"></div>
+<h1>Music with random sounds</h1>
+
+<div data-controller="spotify" data-auth-token=<%= @auth_token %> class="flex flex-col sm:items-stretch sm:flex-row gap-2 mt-2 sm:mx-0 mx-2 p-2 border-2 border-teal-700 rounded">
+    <div class="grow sm:grow-0 flex justify-center rounded">
+        <div class="relative h-32 w-32">
+            <%= image_tag "monkey", class: "absolute rounded h-32 w-32", data: { spotify_target: "icon" } %>
+            <div class="absolute flex justify-center items-center h-full w-full">
+                <svg
+                    data-spotify-target=play
+                    data-action="click->spotify#play"
+                    class="hidden cursor-pointer"
+                    height=50
+                    viewbox="0 0 20 20"
+                >
+                    <path d="M 10 0 C 15 0 20 5 20 10 C 20 15 16 20 10 20 C 5 20 0 15 0 10 C 0 5 5 0 10 0 Z M 7 3 L 7 17 L 16 10 Z" fill=white />
+                </svg>
+                <svg
+                    data-spotify-target=pause
+                    data-action="click->spotify#pause"
+                    class="hidden cursor-pointer"
+                    height=50
+                    viewbox="0 0 20 20"
+                >
+                    <path d="M 10 0 C 15 0 20 5 20 10 C 20 15 16 20 10 20 C 5 20 0 15 0 10 C 0 5 5 0 10 0 Z M 6 5 C 6 3 9 3 9 5 L 9 15 C 9 17 6 17 6 15 Z M 11 5 C 11 3 14 3 14 5 L 14 15 C 14 17 11 17 11 15 Z" fill=white fill-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="grow flex flex-col justify-between">
+        <div class="flex sm:justify-between flex-col sm:flex-row">
+            <div>
+                <h3 data-spotify-target=name class="text-center sm:text-start p-0">Nothing playing</h3>
+                <h3 data-spotify-target=author class="text-gray-500 text-center sm:text-start p-0"></h3>
+            </div>
+            <span class="text-gray-500 text-center sm:text-start">Use the Spotify app to control</span>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:mt-0 mt-2">
+            <div data-spotify-target=progress class=font-mono></div>
+            <div class="h-2 grow bg-zinc-500 rounded">
+                <div data-spotify-target=progressBar class="h-2 w-0 bg-white rounded"></div>
+            </div>
+            <div data-spotify-target=total class=font-mono></div>
+        </div>
+    </div>
+</div>
+
 <script src="https://sdk.scdn.co/spotify-player.js" defer></script>
 
 <%= render partial: "layouts/sounds" %>

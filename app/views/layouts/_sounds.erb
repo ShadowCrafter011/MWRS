@@ -1,4 +1,4 @@
-<button data-controller="pause" data-action="pause#toggle" class="w-full border-2 border-teal-700 transition-colors duration-150 rounded hover:bg-teal-700 py-2 mt-2 truncate min-w-32">Disable all sounds</button>
+<div data-controller="pause" data-action="click->pause#toggle" class="cursor-pointer text-center border-2 border-teal-700 transition-colors duration-150 rounded hover:bg-teal-700 py-2 mt-2 mx-2 sm:mx-0 truncate min-w-32">Disable all sounds</div>
 
 <div class="mt-2 space-y-2 px-2 sm:px-0">
     <% Dir.glob("app/assets/audio/*").each do |path| %>
