@@ -71,8 +71,8 @@ class SpotifyController < ApplicationController
     end
 
     def set_cookies(json)
-        cookies.encrypted[:auth] = json["access_token"]
-        cookies.encrypted[:refresh] = json["refresh_token"] if json["refresh_token"].present?
-        cookies.encrypted[:auth_expire] = (Time.now + (json["expires_in"] - 20).seconds).to_i
+        cookies.permanent.encrypted[:auth] = json["access_token"]
+        cookies.permanent.encrypted[:refresh] = json["refresh_token"] if json["refresh_token"].present?
+        cookies.permanent.encrypted[:auth_expire] = (Time.now + (json["expires_in"] - 20).seconds).to_i
     end
 end
