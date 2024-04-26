@@ -5,6 +5,7 @@ import $ from "jquery";
 export default class extends Controller {
     static targets = [
         "activate",
+        "username",
         "icon",
         "name",
         "author",
@@ -19,6 +20,18 @@ export default class extends Controller {
         window.onSpotifyWebPlaybackSDKReady = this.init_player.bind(this);
         this.token = $(this.element).data("auth-token");
         this.token_used = false;
+
+        $.ajax({
+            method: "GET",
+            url: "https://api.spotify.com/v1/me",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+            },
+            success: (res) => {
+                $(this.usernameTarget).text(`Logged in as ${res.display_name}`);
+                $(this.usernameTarget).removeClass("hidden");
+            },
+        });
     }
 
     init_player() {
@@ -53,7 +66,8 @@ export default class extends Controller {
 
     state_change(player) {
         if (!player) return;
-        console.log(player);
+
+        $(this.usernameTarget).addClass("hidden");
 
         if (player.track_window?.current_track) {
             let track = player.track_window.current_track;
@@ -84,7 +98,7 @@ export default class extends Controller {
             for (let artist of track.artists) {
                 artists.push(artist.name);
             }
-            $(this.authorTarget).text(artists.join(","));
+            $(this.authorTarget).text(artists.join(", "));
 
             let totalSeconds = Math.floor(player.duration / 1000);
             let progressSeconds = Math.floor(player.position / 1000);
