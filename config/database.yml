@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: mwrs_production
-  username: mwrs
-  password: <%= ENV["MWRS_DATABASE_PASSWORD"] %>
